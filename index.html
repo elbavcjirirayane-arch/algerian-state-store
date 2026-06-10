@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algerian State | Premium FiveM VIP Store</title>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header id="header">
+    <div class="container navbar">
+      <a href="#" class="nav-logo">Algerian <span>State</span></a>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item active"><a href="#" data-i18n="nav_store">Store</a></li>
+        <li class="nav-item"><a href="#shop" data-i18n="nav_packages">VIP Packages</a></li>
+        <li class="nav-item"><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+        <li class="nav-item"><a href="https://discord.gg/algerianstate" target="_blank" data-i18n="nav_discord">Discord</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <!-- Live Server Status Indicator -->
+        <div class="server-status" id="serverStatus" title="Click to copy server IP">
+          <span class="pulse-badge"></span>
+          <span><strong id="playerCount">148</strong>/200 Online</span>
+        </div>
+        
+        <!-- Cart Toggle Button -->
+        <button class="cart-toggle" id="cartToggleBtn" aria-label="Open cart">
+          <i class="fa-solid fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <!-- Language Toggle Button -->
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language" title="Change Language">
+          <i class="fa-solid fa-globe"></i> <span id="currentLangLabel">EN</span>
+        </button>
+
+        <!-- Admin Panel Button -->
+        <button class="admin-toggle-btn" id="adminToggleBtn" aria-label="Admin Panel" title="Admin Panel">
+          <i class="fa-solid fa-user-shield"></i>
+        </button>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div id="particles-js"></div>
+    <div class="container hero-content">
+      <div class="hero-badge" data-i18n="hero_badge">
+        <i class="fa-solid fa-gem"></i> Algerian State VIP Store
+      </div>
+      <h1 data-i18n="hero_title">Dominate The Streets <br>As a <span class="text-gradient neon-glow">VIP Member</span></h1>
+      <p data-i18n="hero_subtitle">Upgrade your FiveM gameplay on Algerian State. Unlock premium custom vehicles, high-end mansions, custom peds, and elite server privileges. Instant automated delivery.</p>
+      
+      <div class="hero-buttons">
+        <a href="#shop" class="btn btn-primary" data-i18n="btn_browse">
+          <i class="fa-solid fa-shopping-bag"></i> Browse Packages
+        </a>
+        <a href="https://discord.gg/algerianstate" target="_blank" class="btn btn-secondary" data-i18n="btn_discord">
+          <i class="fa-brands fa-discord"></i> Join Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="features-section">
+    <div class="container features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3>Instant Delivery</h3>
+        <p>Purchases are synced automatically with our game servers in under 5 minutes. No manual intervention needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3>Safe & Secure Checkout</h3>
+        <p>Your transactions are encrypted and processed securely. We support PayPal, Cards, and Crypto.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <h3>24/7 Support Support</h3>
+        <p>Have issues or queries? Open a billing ticket on our Discord, and our support team will help you in minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="shop-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Exclusive VIP Shop</h2>
+        <p>Select a category below to explore our available premium content. Enter your details during checkout to receive them ingame.</p>
+      </div>
+      
+      <!-- Shop Controls -->
+      <div class="shop-controls">
+        <!-- Category Tabs -->
+        <div class="shop-tabs" id="shopTabs">
+          <button class="tab-btn active" data-category="all" data-i18n="tab_all">All Packages</button>
+          <button class="tab-btn" data-category="cars" data-i18n="tab_cars">VIP Cars</button>
+          <button class="tab-btn" data-category="houses" data-i18n="tab_houses">VIP Houses</button>
+          <button class="tab-btn" data-category="peds" data-i18n="tab_peds">VIP Peds</button>
+          <button class="tab-btn" data-category="bundles" data-i18n="tab_bundles">VIP Bundles</button>
+        </div>
+        
+        <!-- Search Field -->
+        <div class="shop-search">
+          <i class="fa-solid fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search packages...">
+        </div>
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Marquee Section -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <h2 data-i18n="reviews_title">What Our VIPs Say</h2>
+      </div>
+    </div>
+    <div class="marquee-container">
+      <div class="marquee-content" id="reviewsMarquee">
+        <!-- Generated dynamically in JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Shopping Cart Slide-out Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2><i class="fa-solid fa-shopping-basket"></i> Your Cart</h2>
+      <button class="close-cart" id="closeCartBtn" aria-label="Close cart">&times;</button>
+    </div>
+    
+    <!-- Cart Items Scrollable Content -->
+    <div class="cart-items" id="cartItemsContainer">
+      <!-- Generated dynamically in JavaScript -->
+    </div>
+    
+    <!-- Cart Footer with total and checkout triggers -->
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span class="total-label">Total Amount:</span>
+        <span class="total-price" id="cartTotal">$0.00</span>
+      </div>
+      
+      <!-- Steam Hex & Discord Verification Fields -->
+      <div class="form-group" style="margin-bottom: 1.25rem;">
+        <label for="playerIdentifier">Game Identifier (Discord / Steam HEX)</label>
+        <input type="text" id="playerIdentifier" placeholder="e.g. steam:1100001abcdef12" required>
+        <span class="help-text">Required to link the items to your ingame character.</span>
+      </div>
+      
+      <button class="cart-checkout-btn" id="checkoutTriggerBtn">
+        <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- FAQ Section Accordion -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions about how the VIP Store works? Find quick answers to common issues here.</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I claim my VIP items in-game? <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Our store integrates directly with the Algerian State servers. Once payment is processed, the system claims your Steam HEX/Discord ID, and delivery is completed. Vehicles will be added to your VIP garage, houses will show as owned, and peds will be accessible via the VIP outfit menu.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Are VIP purchases permanent or monthly? <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Unless marked otherwise (like temporary monthly VIP passes), individual VIP cars, custom peds, and mansions are permanent, one-time payments that will remain linked to your account indefinitely.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            What payment methods do you accept? <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We securely accept PayPal, major credit cards (Visa, Mastercard, American Express), Google Pay, and selected cryptocurrency formats. All transactions are fully encrypted.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I transfer my VIP perks to a different steam account? <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Perks are bound to your account identifier entered during checkout. Transfers are allowed under special circumstances. Please open a billing support ticket on our official Discord for manual adjustments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: Payment / Checkout Dialog -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-backdrop" id="checkoutModalBackdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Secure Checkout</h3>
+        <button class="close-modal" id="closeCheckoutModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Checkout Summary -->
+        <div class="checkout-summary">
+          <div class="checkout-row">
+            <span>Linked Account:</span>
+            <span id="summaryIdentifier" style="color: var(--secondary);">--</span>
+          </div>
+          <div class="checkout-row">
+            <span>Total Items:</span>
+            <span id="summaryCount">0</span>
+          </div>
+          <div class="checkout-row">
+            <span>Total Cost:</span>
+            <span id="summaryTotal">$0.00</span>
+          </div>
+        </div>
+        
+        <!-- Mock Credit Card Form -->
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" id="cardName" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="4000 1234 5678 9010" maxlength="19" required>
+          </div>
+          <div class="card-details-grid">
+            <div class="form-group">
+              <label for="cardExpiry">Expiration Date</label>
+              <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div class="form-group">
+              <label for="cardCvc">CVC</label>
+              <input type="password" id="cardCvc" placeholder="•••" maxlength="3" required>
+            </div>
+          </div>
+          <button type="submit" class="cart-checkout-btn" style="margin-top: 1rem;">
+            <i class="fa-solid fa-lock"></i> Authorize & Pay
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Success Alert Dialog -->
+  <div class="modal" id="successModal">
+    <div class="modal-backdrop" id="successModalBackdrop"></div>
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-body">
+        <div class="success-anim">
+          <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h4>Purchase Approved!</h4>
+          <p>Thank you for supporting <strong>Algerian State</strong>! Your packages have been assigned to your identifier. Please log in or rejoin the server in 3-5 minutes to claim your items.</p>
+          <button class="btn btn-primary" id="successCloseBtn" style="width: 100%;">
+            Awesome, Let's Play!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <h3>Algerian <span style="font-weight:400;color:var(--primary);">State</span></h3>
+        <p>The ultimate Algerian FiveM roleplay experience. Explore high-quality assets, active staff, custom scripts, and an immersive environment.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#shop">Shop Packages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://discord.gg/algerianstate" target="_blank">Support Discord</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>VIP Categories</h4>
+        <ul class="footer-links">
+          <li><a href="#shop">VIP Super Cars</a></li>
+          <li><a href="#shop">Luxury Mansions</a></li>
+          <li><a href="#shop">Custom Character Peds</a></li>
+          <li><a href="#shop">VIP Multi-Perk Bundles</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="container footer-bottom">
+      <div class="disclaimer">
+        Disclaimer: Algerian State is not affiliated with or endorsed by Rockstar Games, Take-Two Interactive, or FiveM. All product names, logos, and brands are property of their respective owners.
+      </div>
+      <div class="copyright">
+        &copy; 2026 Algerian State. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin Panel Modal -->
+  <div class="admin-overlay" id="adminOverlay"></div>
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+      <div class="admin-header-left">
+        <i class="fa-solid fa-user-shield"></i>
+        <div>
+          <h2>Admin Panel</h2>
+          <span>Algerian State VIP Store</span>
+        </div>
+      </div>
+      <button class="admin-close-btn" id="adminCloseBtn" aria-label="Close Admin Panel">&times;</button>
+    </div>
+
+    <!-- Admin Tabs -->
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-admin-tab="products"><i class="fa-solid fa-box"></i> Products</button>
+      <button class="admin-tab-btn" data-admin-tab="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+      <button class="admin-tab-btn" data-admin-tab="add-product"><i class="fa-solid fa-plus"></i> Add Product</button>
+    </div>
+
+    <!-- Tab: Products List -->
+    <div class="admin-tab-content active" id="admin-tab-products">
+      <div class="admin-section-title">Manage Products</div>
+      <div id="adminProductsList"></div>
+    </div>
+
+    <!-- Tab: Site Settings -->
+    <div class="admin-tab-content" id="admin-tab-settings">
+      <div class="admin-section-title">Site Settings</div>
+      <div class="admin-settings-form">
+        <div class="admin-form-group">
+          <label>Site Name</label>
+          <input type="text" id="adminSiteName" value="Algerian State">
+        </div>
+        <div class="admin-form-group">
+          <label>Hero Title</label>
+          <input type="text" id="adminHeroTitle" value="Dominate The Streets As a VIP Member">
+        </div>
+        <div class="admin-form-group">
+          <label>Hero Subtitle</label>
+          <textarea id="adminHeroSubtitle" rows="3">Upgrade your FiveM gameplay on Algerian State. Unlock premium custom vehicles, high-end mansions, custom peds, and elite server privileges. Instant automated delivery.</textarea>
+        </div>
+        <div class="admin-form-group">
+          <label>Discord Invite Link</label>
+          <input type="text" id="adminDiscordLink" value="https://discord.gg/algerianstate">
+        </div>
+        <div class="admin-form-group">
+          <label>Server IP (Click to Copy)</label>
+          <input type="text" id="adminServerIP" value="play.algerianstate.com">
+        </div>
+        <div class="admin-form-group">
+          <label>Max Players</label>
+          <input type="number" id="adminMaxPlayers" value="200" min="1" max="10000">
+        </div>
+        <button class="admin-save-btn" id="adminSaveSettings"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+      </div>
+    </div>
+
+    <!-- Tab: Add New Product -->
+    <div class="admin-tab-content" id="admin-tab-add-product">
+      <div class="admin-section-title">Add New Product</div>
+      <form class="admin-settings-form" id="adminAddProductForm">
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label>Product Name *</label>
+            <input type="text" id="newProdName" placeholder="e.g. Sultan RS Custom" required>
+          </div>
+          <div class="admin-form-group">
+            <label>Category *</label>
+            <select id="newProdCategory">
+              <option value="cars">VIP Cars</option>
+              <option value="houses">VIP Houses</option>
+              <option value="peds">VIP Peds</option>
+              <option value="bundles">VIP Bundles</option>
+            </select>
+          </div>
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label>Price ($) *</label>
+            <input type="number" id="newProdPrice" placeholder="25.00" min="0" step="0.01" required>
+          </div>
+          <div class="admin-form-group">
+            <label>Image URL</label>
+            <input type="text" id="newProdImage" placeholder="images/my_product.jpg">
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label>Description *</label>
+          <textarea id="newProdDesc" rows="3" placeholder="Describe the product..." required></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label><input type="checkbox" id="newProdPremium" style="margin-right:8px;"> Mark as Premium (adds gold badge)</label>
+        </div>
+        <div class="admin-section-title" style="margin-top:1rem;">Specifications (optional)</div>
+        <div id="specFieldsContainer">
+          <div class="spec-field-row">
+            <input type="text" class="spec-key" placeholder="Label (e.g. Top Speed)">
+            <input type="text" class="spec-val" placeholder="Value (e.g. 320 km/h)">
+            <button type="button" class="spec-remove-btn"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+        <button type="button" class="admin-add-spec-btn" id="addSpecFieldBtn"><i class="fa-solid fa-plus"></i> Add Spec</button>
+        <button type="submit" class="admin-save-btn" style="margin-top:1.5rem;"><i class="fa-solid fa-plus-circle"></i> Add Product</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Javascript Logic File -->
+  <script src="app.js"></script>
+</body>
+</html>
